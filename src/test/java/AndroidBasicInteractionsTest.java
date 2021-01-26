@@ -15,13 +15,16 @@ public class AndroidBasicInteractionsTest extends BaseTest {
     @BeforeClass
     public void setUp() throws IOException {
 
-        final String URL_STRING = "http://127.0.0.1:4723/wd/hub";
-        URL url = new URL(URL_STRING);
+        DesiredCapabilities capabilities = new DesiredCapabilities();
 
-//        File classpathRoot = new File(System.getProperty("user.dir"));
+        //Set the DesiredCapabilities capabilities only for local development
+        //        File classpathRoot = new File(System.getProperty("user.dir"));
 //        File appDir = new File(classpathRoot, "app/build/outputs/apk/bfmtvDev/debug");
 //        File app = new File(appDir.getCanonicalPath(), "app-bfmtv-dev-debug.apk");
-        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("app", app.getAbsolutePath());
+
+
+
         /*
         'deviceName' capability only affects device selection if you run the test in a cloud
         environment. It has no effect if the test is executed on a local machine.
@@ -72,8 +75,10 @@ public class AndroidBasicInteractionsTest extends BaseTest {
         if you have more questions.
         */
 
-//        driver = new AndroidDriver<WebElement>(getServiceUrl(), capabilities);
+        final String URL_STRING = "http://127.0.0.1:4723/wd/hub";
+        URL url = new URL(URL_STRING);
         driver = new AndroidDriver<>(url, capabilities);
+        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
     }
 
     @AfterClass
@@ -86,7 +91,6 @@ public class AndroidBasicInteractionsTest extends BaseTest {
 
     @Test()
     public void testSendKeys() {
-        driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
         MobileElement liveButton = driver.findElementById("appToolbarLiveButton");
         liveButton.click();
     }
