@@ -1,4 +1,6 @@
 import cucumber.api.CucumberOptions;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
@@ -13,32 +15,32 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-@CucumberOptions(
-        strict = true,
-        monochrome = true,
-        features = "src/test/feature/SimpleTest.feature",
-        plugin = {"pretty"}
-)
+//@CucumberOptions(
+//        strict = true,
+//        monochrome = true,
+//        features = "src/test/feature/SimpleTest.feature",
+//        plugin = {"pretty"}
+//)
 public abstract class BaseTest extends AbstractTestNGCucumberTests {
 
     private static AppiumDriverLocalService service;
     protected AndroidDriver<MobileElement> driver;
 
-    private TestNGCucumberRunner testNGCucumberRunner;
+//    private TestNGCucumberRunner testNGCucumberRunner;
+//
+//    @Test(groups = "Cucumber", description = "Runs Cucumber Feature", dataProvider = "features")
+//    public void feature(CucumberFeatureWrapper cucumberFeature) {
+//        testNGCucumberRunner.runCucumber(cucumberFeature.getCucumberFeature());
+//    }
+//
+//    @DataProvider
+//    public Object[][] features() {
+//        return testNGCucumberRunner.provideFeatures();
+//    }
 
-    @Test(groups = "Cucumber", description = "Runs Cucumber Feature", dataProvider = "features")
-    public void feature(CucumberFeatureWrapper cucumberFeature) {
-        testNGCucumberRunner.runCucumber(cucumberFeature.getCucumberFeature());
-    }
-
-    @DataProvider
-    public Object[][] features() {
-        return testNGCucumberRunner.provideFeatures();
-    }
-
-    @BeforeSuite
+    @Before
     public void setUp() throws IOException {
-        testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
+//        testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
@@ -108,7 +110,7 @@ public abstract class BaseTest extends AbstractTestNGCucumberTests {
         driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
     }
 
-    @AfterSuite
+    @After
     public void tearDown() {
         if (driver != null) {
             driver.quit();
