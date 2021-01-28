@@ -1,2 +1,2 @@
-/home/joris/Documents/altice/AppiumJavaTestNG/src/test/java/SimpleTest.java
-/home/joris/Documents/altice/AppiumJavaTestNG/src/test/java/TestRunner.java
+/home/joris/Documents/altice/AppiumJavaTestNG/src/test/java/stepdef/AbsTest.java
+/home/joris/Documents/altice/AppiumJavaTestNG/src/test/java/stepdef/SimpleTest.java
