@@ -3,6 +3,7 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.testng.AbstractTestNGCucumberTests;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -13,7 +14,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-public class SimpleTest extends BaseTest {
+@CucumberOptions(
+        features = {"classpath:SimpleTest.feature"}
+)
+public class SimpleTest extends AbstractTestNGCucumberTests {
+
+    protected AndroidDriver<MobileElement> driver;
 
     @Before
     public void setUp() throws IOException {
@@ -40,12 +46,12 @@ public class SimpleTest extends BaseTest {
         }
     }
 
-    @Given("Nikoumouk")
+    @Given("^Nikoumouk$")
     public void givenNikoumouk() {
         // Preparation du scenario
     }
 
-    @Then("click on live button")
+    @Then("^click on live button$")
     public void testClickOnLiveButton() {
         MobileElement liveButton = driver.findElementById("appToolbarLiveButton");
         liveButton.click();
